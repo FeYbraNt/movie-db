@@ -5,11 +5,13 @@
         <MovieBox v-if="dialog" :movie="movieData" />
       </v-dialog>
       <h4 v-if="$apollo.loading">Loading...</h4>
-      <v-flex v-for="movie in movies" :key="movie.id" xs12 sm6 class="pa-0">
+      <h1 v-if="movies.length == 0">No movies found</h1>
+      <v-flex v-else v-for="movie in movies" :key="movie.id" xs12 sm6 class="pa-0">
           <v-card height="150px" @click.stop="openModal(movie)" hover>
             <v-layout row wrap>
               <v-flex xs4 sm4>
-                  <v-img :src="'https://image.tmdb.org/t/p/w185_and_h278_bestv2' + movie.poster_path" contain width="98px"></v-img>
+                  <v-img v-if="movie.poster_path" :src="'https://image.tmdb.org/t/p/w185_and_h278_bestv2' + movie.poster_path" 
+                    contain width="98px"></v-img>
               </v-flex>
               <v-flex xs8 sm8>
                 <v-card-title primary-title>
@@ -37,9 +39,6 @@ export default {
       this.movieData = data;
       this.dialog = true;
     }
-  },
-  beforeCreate() {
-    this.$store.dispatch('FETCH_ALL_MOVIES');
   }
 };
 </script>

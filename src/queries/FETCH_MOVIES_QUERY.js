@@ -1,8 +1,8 @@
 import gql from "graphql-tag"
 
 export default gql`
-    query AllMoviesQuery {
-        movies(query: "Star Wars") {
+    query AllMoviesQuery ($search: String!) {
+        movies(query: $search) {
             id
             title
             poster_path

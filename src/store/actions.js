@@ -1,12 +1,15 @@
-import ALL_MOVIES_QUERY from "@/queries/ALL_MOVIES_QUERY"
+import FETCH_MOVIES_QUERY from "@/queries/FETCH_MOVIES_QUERY"
 import { apolloClient } from "@/plugins/vue-apollo"
 
 export const actions = {
-    FETCH_ALL_MOVIES ({ commit }) {
+    FETCH_MOVIES ({ commit }, term) {
         apolloClient.query({ 
-            query: ALL_MOVIES_QUERY 
+            query: FETCH_MOVIES_QUERY,
+            variables: {
+                search: term
+            } 
         }).then(response => {
             commit('SET_ALL_MOVIES', response.data.movies)
         })
-    }
+    },
 }

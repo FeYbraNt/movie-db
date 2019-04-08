@@ -1,5 +1,11 @@
 # movie-db
 
+Simple application using vuex, vuetify & ApolloGraphql with vue-apollo.
+
+#### Functionalities
+- Search movies: push search button after write text
+- See movie details: click on movie
+
 ## Project setup
 ```
 npm install
